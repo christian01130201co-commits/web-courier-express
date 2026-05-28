@@ -103,6 +103,15 @@ svg {
   font-weight: 800;
 }
 
+.brand__logo {
+  width: clamp(118px, 15vw, 178px);
+  max-height: 74px;
+  object-fit: contain;
+}
+
+.brand--image-only {
+  gap: 0;
+}
 .brand strong,
 .brand small {
   display: block;
@@ -527,6 +536,11 @@ svg {
   height: 46px;
 }
 
+.brand--footer .brand__logo {
+  width: clamp(120px, 16vw, 190px);
+  max-height: 76px;
+}
+
 .brand--footer strong,
 .footer h2 {
   color: var(--white);
@@ -660,6 +674,11 @@ svg {
     font-size: 16px;
   }
 
+  .brand__logo {
+    width: 116px;
+    max-height: 62px;
+  }
+
   .brand__mark {
     width: 44px;
     height: 44px;
@@ -707,7 +726,7 @@ svg {
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
-    overflow: hidden; /* Oculta las imágenes que están afuera */
+    overflow: hidden; /* Oculta las imÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡genes que estÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡n afuera */
 }
 
 /* Estilo para cada diapositiva */
@@ -745,7 +764,7 @@ svg {
 .prev { left: 20px; }
 .next { right: 20px; }
 
-/* Animación de transición suave */
+/* AnimaciÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³n de transiciÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³n suave */
 @keyframes un-segundo-fade {
     from { opacity: 0.4; } 
     to { opacity: 1; }
@@ -757,7 +776,7 @@ svg {
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
-    overflow: hidden; /* Oculta las imágenes que están afuera */
+    overflow: hidden; /* Oculta las imÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡genes que estÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡n afuera */
 }
 
 /* Estilo para cada diapositiva */
@@ -795,8 +814,32 @@ svg {
 .prev { left: 20px; }
 .next { right: 20px; }
 
-/* Animación de transición suave */
+/* AnimaciÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³n de transiciÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³n suave */
 @keyframes un-segundo-fade {
     from { opacity: 0.4; } 
     to { opacity: 1; }
+}
+.brand--logo-small .brand__logo {
+  width: 108px;
+  max-height: 54px;
+}
+
+.brand--logo-normal .brand__logo {
+  width: 160px;
+  max-height: 74px;
+}
+
+.brand--logo-large .brand__logo {
+  width: 230px;
+  max-height: 96px;
+}
+
+.brand--logo-xlarge .brand__logo {
+  width: 320px;
+  max-height: 126px;
+}
+
+.brand--footer.brand--logo-xlarge .brand__logo {
+  width: 260px;
+  max-height: 110px;
 }

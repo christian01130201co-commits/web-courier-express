@@ -1,0 +1,37 @@
+﻿<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Administrador | Andes Express</title>
+    <link rel="stylesheet" href="admin.css">
+    <script src="content-manager.js" defer></script>
+    <script src="admin.js" defer></script>
+  </head>
+  <body>
+    <header class="admin-header">
+      <div>
+        <span>Panel de administrador</span>
+        <h1>Editar pagina principal</h1>
+      </div>
+      <a class="admin-header__link" href="index.html">Ver pagina</a>
+    </header>
+
+    <main class="admin-shell">
+      <section class="admin-intro">
+        <h2>Contenido editable</h2>
+        <p>Modifica textos, cuadros, banners, imagenes y logo. Los cambios se guardan en este navegador y se veran al abrir la pagina principal.</p>
+      </section>
+
+      <form class="admin-form" id="admin-form"></form>
+
+      <section class="admin-actions" aria-label="Acciones del administrador">
+        <button class="button button--primary" form="admin-form" type="submit">Guardar cambios</button>
+        <button class="button" id="reset-content" type="button">Restaurar original</button>
+        <a class="button" href="index.html">Ver resultado</a>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
