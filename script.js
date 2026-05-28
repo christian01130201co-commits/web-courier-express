@@ -37,3 +37,30 @@ window.addEventListener("load", () => {
     window.lucide.createIcons();
   }
 });
+
+let slideIndex = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+
+function cambiarSlide(direccion) {
+    // Si no hay diapositivas en la página, detiene la función para evitar errores
+    if (slides.length === 0) return;
+
+    // Quita la clase activa de la imagen actual
+    slides[slideIndex].classList.remove('active');
+    
+    // Calcula la posición de la siguiente imagen
+    slideIndex += direccion;
+    
+    // Si llega al final, regresa a la primera
+    if (slideIndex >= slides.length) { slideIndex = 0; }
+    // Si va hacia atrás desde la primera, va a la última
+    if (slideIndex < 0) { slideIndex = slides.length - 1; }
+    
+    // Agrega la clase activa a la nueva imagen
+    slides[slideIndex].classList.add('active');
+}
+
+// Hacer que cambie solo cada 5 segundos de forma automática
+setInterval(() => {
+    cambiarSlide(1);
+}, 5000);

@@ -700,3 +700,103 @@ svg {
     flex-direction: column;
   }
 }
+
+/* Contenedor principal del Slider */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden; /* Oculta las imágenes que están afuera */
+}
+
+/* Estilo para cada diapositiva */
+.carousel-slide {
+    display: none; /* Por defecto ocultamos todas */
+    width: 100%;
+}
+
+/* Clase que muestra la imagen activa */
+.carousel-slide.active {
+    display: block;
+    animation: un-segundo-fade 0.5s ease-in-out; /* Efecto suave al cambiar */
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Botones/Flechas encima de la imagen */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+}
+.carousel-btn:hover { background-color: #ffb703; /* El color amarillo de tu logo */ }
+.prev { left: 20px; }
+.next { right: 20px; }
+
+/* Animación de transición suave */
+@keyframes un-segundo-fade {
+    from { opacity: 0.4; } 
+    to { opacity: 1; }
+}
+
+/* Contenedor principal del Slider */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden; /* Oculta las imágenes que están afuera */
+}
+
+/* Estilo para cada diapositiva */
+.carousel-slide {
+    display: none; /* Por defecto ocultamos todas */
+    width: 100%;
+}
+
+/* Clase que muestra la imagen activa */
+.carousel-slide.active {
+    display: block;
+    animation: un-segundo-fade 0.5s ease-in-out; /* Efecto suave al cambiar */
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Botones/Flechas encima de la imagen */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+}
+.carousel-btn:hover { background-color: #ffb703; /* El color amarillo de tu logo */ }
+.prev { left: 20px; }
+.next { right: 20px; }
+
+/* Animación de transición suave */
+@keyframes un-segundo-fade {
+    from { opacity: 0.4; } 
+    to { opacity: 1; }
+}
