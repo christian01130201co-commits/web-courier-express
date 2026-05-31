@@ -50,7 +50,6 @@ function createTextField(field, value) {
   return wrapper;
 }
 
-
 function createSelectField(field, value) {
   const wrapper = document.createElement("div");
   wrapper.className = "field";
@@ -79,6 +78,7 @@ function createSelectField(field, value) {
   wrapper.append(label, select);
   return wrapper;
 }
+
 function createImageField(field, value) {
   const wrapper = document.createElement("div");
   wrapper.className = "field field--wide";
@@ -154,8 +154,10 @@ function createImageField(field, value) {
   return wrapper;
 }
 
-function renderForm() {
-  const content = window.EditableContent.loadContent();
+// 1. LE AGREGAMOS ASYNC PORQUE ADENTRO LLAMARÁ A INTERNET
+async function renderForm() {
+  // 2. AGREGAMOS AWAIT PARA ESPERAR A SUPABASE
+  const content = await window.EditableContent.loadContent();
   const fragment = document.createDocumentFragment();
 
   groups.forEach((group) => {
@@ -191,19 +193,24 @@ function collectFormData() {
   return nextContent;
 }
 
-form.addEventListener("submit", (event) => {
+// 3. LE AGREGAMOS ASYNC AL SUBMIT PORQUE LA NUEVA FUNCIÓN SAVECONTENT TARDA MILISEGUNDOS
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  window.EditableContent.saveContent(collectFormData());
-  showToast("Cambios guardados. Abre la pagina principal para verlos.");
+  // 4. AGREGAMOS AWAIT PARA QUE ESPERE EL PROCESO DE ALMACENAMIENTO EN SUPABASE
+  await window.EditableContent.saveContent(collectFormData());
+  showToast("¡Cambios guardados globalmente en la base de datos de Supabase!");
 });
 
-resetButton.addEventListener("click", () => {
+// 5. MODIFICAMOS EL BOTÓN DE RESET PARA REACCIONAR CON ASYNC/AWAIT
+resetButton.addEventListener("click", async () => {
   const confirmed = confirm("Quieres borrar todos los cambios y volver al contenido original?");
   if (!confirmed) return;
-  localStorage.removeItem(window.EditableContent.storageKey);
+  
+  // Ahora el reset limpia el formulario y vuelve a renderizar con asincronía
   form.textContent = "";
-  renderForm();
-  showToast("Contenido restaurado.");
+  await renderForm();
+  showToast("Contenido restaurado en pantalla.");
 });
 
+// 6. LANZAMOS LA FUNCIÓN INICIAL
 renderForm();

@@ -1,5 +1,13 @@
 (function () {
+  // 1. CREDENCIALES OFICIALES DE TU SUPABASE
+  const SUPABASE_URL = "https://fiixztfyrfoaewzvogof.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_89RkY4KL8bDCOlD0h-E95Q_VeTYIBBF"; 
+  
+  // Clave de almacenamiento requerida para la compatibilidad con admin.js
   const STORAGE_KEY = "webCourierExpressContent";
+
+  // Inicializar el cliente de Supabase global
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
   const fields = [
     ["logoImage", "image", "Logo PNG", ".brand", "logo", ""],
@@ -37,13 +45,48 @@
     ["footerText", "textarea", "Texto del pie de pagina", ".footer__grid > div:first-child p", "text", "Plantilla editable para courier, carga aerea, compras y atencion comercial."]
   ].map(([id, type, label, selector, target, defaultValue]) => ({ id, type, label, selector, target, defaultValue }));
 
-  function loadContent() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
-    catch (error) { return {}; }
+  // 2. LEER DATOS DESDE SUPABASE
+  async function loadContent() {
+    try {
+      const { data, error } = await supabase
+        .from('configuracion')
+        .select('clave, valor');
+
+      if (error) throw error;
+
+      const contentObject = {};
+      if (data) {
+        data.forEach(row => {
+          contentObject[row.clave] = row.valor;
+        });
+      }
+      return contentObject;
+    } catch (error) {
+      console.error("Error cargando desde Supabase:", error.message);
+      return {};
+    }
   }
 
-  function saveContent(content) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(content));
+  // 3. GUARDAR DATOS EN SUPABASE (Línea por línea de forma masiva)
+  async function saveContent(content) {
+    try {
+      const rowsToUpsert = Object.keys(content).map(key => ({
+        clave: key,
+        valor: content[key]
+      }));
+
+      if (rowsToUpsert.length === 0) return;
+
+      const { error } = await supabase
+        .from('configuracion')
+        .upsert(rowsToUpsert, { onConflict: 'clave' });
+
+      if (error) throw error;
+      console.log("¡Todo guardado en la nube con éxito!");
+    } catch (error) {
+      console.error("Error salvando en Supabase:", error.message);
+      alert("Hubo un problema al sincronizar con la nube: " + error.message);
+    }
   }
 
   function getValue(field, content) {
@@ -83,7 +126,6 @@
     element.classList.toggle("brand--image-only", Boolean(value));
   }
 
-
   function setLogoSize(element, value) {
     const sizes = {
       small: { width: "108px", maxHeight: "54px", navHeight: "82px" },
@@ -102,7 +144,6 @@
       image.style.width = size.width;
       image.style.maxHeight = size.maxHeight;
     }
-
     if (nav) {
       nav.style.minHeight = size.navHeight;
     }
@@ -117,6 +158,7 @@
     }
     element.style.backgroundImage = `url("${imageUrl}")`;
   }
+
   function applyField(field, value) {
     document.querySelectorAll(field.selector).forEach((element) => {
       if (field.target === "logo") { setLogo(element, value); return; }
@@ -130,8 +172,9 @@
     });
   }
 
-  function applyContent() {
-    const content = loadContent();
+  // 4. INICIALIZACIÓN ASÍNCRONA PARA MANEJAR PROMESAS EN LA NUBE
+  async function applyContent() {
+    const content = await loadContent();
     fields.forEach((field) => applyField(field, getValue(field, content)));
   }
 

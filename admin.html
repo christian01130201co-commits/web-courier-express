@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Administrador | Andes Express</title>
     <link rel="stylesheet" href="admin.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script src="content-manager.js" defer></script>
     <script src="admin.js" defer></script>
   </head>
@@ -20,7 +23,7 @@
     <main class="admin-shell">
       <section class="admin-intro">
         <h2>Contenido editable</h2>
-        <p>Modifica textos, cuadros, banners, imagenes y logo. Los cambios se guardan en este navegador y se veran al abrir la pagina principal.</p>
+        <p>Modifica textos, cuadros, banners, imagenes y logo. Los cambios se guardan de forma global en la base de datos de Supabase y se actualizarán en tiempo real.</p>
       </section>
 
       <form class="admin-form" id="admin-form"></form>
